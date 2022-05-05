@@ -12,7 +12,7 @@ The message created follows the following structure :-
 
 #### CACAO
 
-```
+```ts
   header: Headers;
 
   payload: Payload;
@@ -22,7 +22,7 @@ The message created follows the following structure :-
 
 #### Payload
 
-```
+```ts
   /** RFC 4501 dns authority that is requesting the signing. */
   domain: string;
 
@@ -70,7 +70,7 @@ The message created follows the following structure :-
 
 #### Signature
 
-```
+```ts
   t: string; // signature scheme
 
   m?: SignatureMeta; // signature related metadata (optional)
@@ -108,7 +108,7 @@ Issued At: 2022-04-25T14:51:12.040Z
 
 #### Regex rules
 Each field specified in the Specification section needs to follow the following regex rules
-```
+```js
 DOMAIN = "(?<domain>([^?#]*)) wants you to sign in with your Solana account:";
 ADDRESS = "\\n(?<address>[a-zA-Z0-9]{32,44})\\n\\n";
 STATEMENT = "((?<statement>[^\\n]+)\\n)?";
@@ -136,7 +136,7 @@ nonce
 time (optional)
 ```
 There are certain checks in place such as invalid domain check,nonce binding check, expiry checks etc
-```
+```js
 import nacl from "tweetnacl";
 .
 .
