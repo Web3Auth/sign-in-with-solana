@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --config webpack.config.js --progress"
+    "dev": "webpack serve --config webpack.config.js --progress",
+    "install:local": "npm i ../../*.tgz"
   },
   "author": "",
   "license": "ISC",
@@ -14,16 +15,17 @@
     "@ipld/dag-json": "^8.0.0",
     "@ipld/dag-pb": "^2.0.2",
     "@multiformats/blake2": "^1.0.1",
-    "@types/varint": "^6.0.0",
-    "multiformats": "^9.0.4",
-    "varint": "^6.0.0",
     "@solana/wallet-adapter-base": "^0.9.5",
     "@solana/wallet-adapter-react": "^0.15.4",
     "@solana/wallet-adapter-react-ui": "^0.9.6",
     "@solana/wallet-adapter-wallets": "^0.16.0",
     "@solana/web3.js": "^1.39.1",
+    "@types/varint": "^6.0.0",
+    "@web3auth/sign-in-with-solana": "file:../../web3auth-sign-in-with-solana-0.0.1.tgz",
     "html-webpack-plugin": "^5.5.0",
+    "multiformats": "^9.0.4",
     "sweetalert": "^2.1.2",
+    "varint": "^6.0.0",
     "webpack": "^5.67.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.3"

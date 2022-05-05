@@ -16,7 +16,7 @@ import { ref } from "vue";
 const selectedWallet = ref();
 
 const allWallets = ref([
-  new TorusWalletAdapter({params: {buildEnv: 'testing'}}),
+  new TorusWalletAdapter(),
   new PhantomWalletAdapter(),
   new SolflareWalletAdapter(),
   new SolletWalletAdapter(),

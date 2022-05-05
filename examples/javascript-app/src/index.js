@@ -1,6 +1,5 @@
 import swal from "sweetalert";
-import { Header, Payload, SIWS } from '../../../dist/signInWithSolana.cjs.js';
-
+import { Header, Payload, SIWS } from "@web3auth/sign-in-with-solana";
 // Domain and origin
 const domain = window.location.host;
 const origin = window.location.origin;
