@@ -173,7 +173,7 @@ export class SIWS {
   /**
    * Validates the integrity of the object by matching it's signature.
    * @param params Parameters to verify the integrity of the message, signature is required.
-   * @returns {Promise<SiweMessage>} This object if valid.
+   * @returns {Promise<SignInWithSolanaResponse>} This object if valid.
    */
   async verify(params: VerifyParams): Promise<SignInWithSolanaResponse> {
     return new Promise<SignInWithSolanaResponse>((resolve) => {
