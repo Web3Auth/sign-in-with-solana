@@ -5,6 +5,10 @@ The primary purpose of this document is to define how Solana accounts authentica
 
 While decentralized identity is not a novel concept, the most common implementations of blockchain-based credentials are either certificate-based or rely on centralized providers. We're proposing an alternative that doesn't require a trusted third party.
 
+### Assumptions 
+
+Currently, there is no propsed standard for signing messages on Solana. We are proposing `SIP-99` as a placeholder to conform to CAIP-74. 
+
 ### Specification
 The specification for Sign In With Solana is based on https://eips.ethereum.org/EIPS/eip-4361 with the intention to make it compatible with https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-74.md
 
