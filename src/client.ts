@@ -47,12 +47,11 @@ export class SIWS {
     }
 
     // Default signing sip99
-    if (typeof this.header === undefined) {
+    if (this.header === undefined) {
       this.header = {
-        t: "sip99"
-      }
+        t: "sip99",
+      };
     }
-    
   }
 
   /**
