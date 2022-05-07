@@ -45,6 +45,14 @@ export class SIWS {
         this.payload.nonce = randomStringForEntropy(96);
       }
     }
+
+    // Default signing sip99
+    if (typeof this.header === undefined) {
+      this.header = {
+        t: "sip99"
+      }
+    }
+    
   }
 
   /**
