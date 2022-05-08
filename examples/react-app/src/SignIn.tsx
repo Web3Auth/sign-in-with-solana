@@ -1,7 +1,7 @@
 import {
     useWallet
 } from '@solana/wallet-adapter-react';
-import { Payload, SIWS } from '@web3auth/sign-in-with-solana';
+import { Header, Payload, SIWS } from '@web3auth/sign-in-with-solana';
 import bs58 from 'bs58';
 import { useState } from 'react';
 import swal from 'sweetalert';
@@ -35,6 +35,9 @@ const SignIn = () => {
         payload.statement = statement;
         payload.version = '1';
         payload.chainId = 1;
+
+        const header = new Header();
+        header.t = "sip99";
         
         let message = new SIWS({ payload });
 
