@@ -24,6 +24,36 @@ body {
   .center{
     text-align: center;
   }
+
+  .walletButtons {
+  align-content: stretch;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 76%;
+  height: auto;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border: 1px solid #0364ff !important; 
+  background-color: #0364ff !important;
+  padding: 10px 20px;
+  margin-bottom: 50px;
+  margin-left: auto !important;
+  margin-right: auto !important; 
+  text-align: center !important;
+  margin-bottom: 27px;
+  text-transform: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 400ms ease;
+  font-family: 'DM Sans', sans-serif;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  
+  }
+  
   .web3auth {
   width: 76%;
   font-weight: 700;

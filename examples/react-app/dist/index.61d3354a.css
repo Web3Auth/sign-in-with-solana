@@ -1,0 +1,125 @@
+body {
+  background-image: url("https://web3auth.io/images/Group-427318217_1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  align-items: center;
+}
+
+.main {
+  width: 400px;
+  height: auto;
+  background-color: #fff;
+  border-radius: 1.5em;
+  margin: 7em auto;
+  box-shadow: 0 11px 35px 2px #00000024;
+}
+
+.sign {
+  text-align: center;
+  color: #8f9095;
+  padding-top: 40px;
+  font-family: DM Sans, sans-serif;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+.walletButtons {
+  width: 76%;
+  height: auto;
+  letter-spacing: 1px;
+  text-transform: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 6px;
+  flex-wrap: nowrap;
+  place-content: stretch center;
+  margin-bottom: 27px;
+  padding: 10px 20px;
+  font-family: DM Sans, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all .4s;
+  display: flex;
+  text-align: center !important;
+  background-color: #0364ff !important;
+  border: 1px solid #0364ff !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.web3auth {
+  width: 76%;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-align: center;
+  text-transform: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 6px;
+  margin-bottom: 27px;
+  margin-left: 46px;
+  padding: 10px 20px;
+  font-family: DM Sans, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all .4s;
+  background-color: #0364ff !important;
+  border: 1px solid #0364ff !important;
+}
+
+.signature, .publicKey {
+  width: 76%;
+  color: #263238;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-align: center;
+  background: #887e7e0a;
+  border: 2px solid #00000005;
+  border-radius: 20px;
+  outline: none;
+  margin-bottom: 27px;
+  margin-left: 46px;
+  padding: 10px 20px;
+  font-family: Ubuntu, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.logo {
+  width: 76%;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-align: center;
+  text-transform: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 6px;
+  margin-bottom: 27px;
+  margin-left: 46px;
+  padding: 10px 20px;
+  font-family: DM Sans, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all .4s;
+}
+
+.web3auth:focus {
+  border: 2px solid #0000002e !important;
+}
+
+p {
+  text-shadow: 0 0 3px #7575751f;
+  color: #8f9095;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=index.61d3354a.css.map */

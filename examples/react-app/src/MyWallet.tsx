@@ -29,12 +29,12 @@ const MyWallet: React.FC = () => {
                 <input className='publicKey' type="text" id="publicKey" value={walletAddress}/>
               </span>
             }
-            
-                    {wallet.connected && <WalletDisconnectButton className='web3auth' /> ||
-                    <WalletModalProvider >
-                        <WalletMultiButton className='web3auth' />
+                    
+                    {wallet.connected && <WalletDisconnectButton className='walletButtons' /> ||
+                <WalletModalProvider >
+                        <WalletMultiButton className='walletButtons' />
                         </WalletModalProvider>
-                    }
+                }
         </>
     );
 };

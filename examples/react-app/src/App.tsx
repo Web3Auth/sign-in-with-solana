@@ -1,6 +1,6 @@
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import {
   GlowWalletAdapter,
   PhantomWalletAdapter,
@@ -33,36 +33,38 @@ const Context: FC<{ children: ReactNode }> = ({ children }) => {
     // of wallets that your users connect to will be loaded.
     const wallets = useMemo(
         () => [
-            new PhantomWalletAdapter(),
-            new GlowWalletAdapter(),
-            new SlopeWalletAdapter(),
+            new PhantomWalletAdapter(),    
             new SolflareWalletAdapter({ network }),
-            new TorusWalletAdapter(),
+            new SlopeWalletAdapter(),
+            new GlowWalletAdapter(),
+            new TorusWalletAdapter()  
         ],
         [network]
     );
 
     return (
         <ConnectionProvider endpoint={endpoint}>
-            <WalletProvider wallets={wallets} autoConnect>
-            <div className="main">
-          <p className="sign">Sign in With Solana</p>
-         <br/>
-         <div>
-          <MyWallet />
-          <SignIn/>
-          <span id="postSignIn" style={{ display: "none" }}>
-            <p>Public Key</p>
-            <input className='publicKey' type="text" id="publicKey"/>
-            <p>Signature</p>
-            <input className='signature' type="text" id="signature" />
-            <button className='web3auth' id='verify'>Verify</button>
-          </span>
-          <p className="center">Created By</p>
-          <img className='logo' src="https://app.tor.us/v1.22.2/img/web3auth.b98a3302.svg"/>
-         </div>
-      </div>
-            </WalletProvider>
+          <WalletProvider wallets={wallets}>
+            <WalletModalProvider>
+              <div className="main">
+                <p className="sign">Sign in With Solana</p>
+                <br/>
+                <div>
+                  <MyWallet />
+                  <SignIn/>
+                  <span id="postSignIn" style={{ display: "none" }}>
+                    <p>Public Key</p>
+                    <input className='publicKey' type="text" id="publicKey"/>
+                    <p>Signature</p>
+                    <input className='signature' type="text" id="signature" />
+                    <button className='web3auth' id='verify'>Verify</button>
+                  </span>
+                  <p className="center">Created By</p>
+                  <img className='logo' src="https://app.tor.us/v1.22.2/img/web3auth.b98a3302.svg"/>
+                </div>
+              </div>
+            </WalletModalProvider>
+          </WalletProvider>
         </ConnectionProvider>
     );
 };
