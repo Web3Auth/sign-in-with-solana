@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies and run
         if: github.ref == 'refs/heads/master'
-        run: cd examples/react-app && npm i assert && npm install && npm run build
+        run: cd examples/react-app && npm i assert && stream-browserify && npm install && npm run build
 
       # Set the credentials from repository settings/secrets
       - name: Configure AWS credentials
