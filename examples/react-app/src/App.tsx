@@ -11,7 +11,6 @@ import {
 import { clusterApiUrl } from '@solana/web3.js';
 import { FC, ReactNode, useMemo } from 'react';
 import MyWallet from './MyWallet';
-import SignIn from './SignIn';
 
 export const App: FC = () => {
     return (
@@ -45,24 +44,13 @@ const Context: FC<{ children: ReactNode }> = ({ children }) => {
     return (
         <ConnectionProvider endpoint={endpoint}>
           <WalletProvider wallets={wallets}>
-            <WalletModalProvider>
-              <div className="main">
-                <p className="sign">Sign in With Solana</p>
-                <br/>
-                <div>
-                  <MyWallet />
-                  <SignIn/>
-                  <span id="postSignIn" style={{ display: "none" }}>
-                    <p>Public Key</p>
-                    <input className='publicKey' type="text" id="publicKey"/>
-                    <p>Signature</p>
-                    <input className='signature' type="text" id="signature" />
-                    <button className='web3auth' id='verify'>Verify</button>
-                  </span>
-                  <p className="center">Created By</p>
-                  <img className='logo' src="https://app.tor.us/v1.22.2/img/web3auth.b98a3302.svg"/>
-                </div>
+          <WalletModalProvider>
+            <div className="main">
+              <MyWallet />
+              <div className="footer-logo-wrapper">
+                <img className='logo' src="https://app.tor.us/v1.22.2/img/web3auth.b98a3302.svg" />
               </div>
+            </div>
             </WalletModalProvider>
           </WalletProvider>
         </ConnectionProvider>
