@@ -26,3 +26,6 @@ disc.html
 secrets.json
 toruslabs-solana-embed*
 .eslintcache
+
+.parcel-cache
+react-app/dist
