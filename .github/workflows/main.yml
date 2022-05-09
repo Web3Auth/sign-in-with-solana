@@ -44,7 +44,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           npm pack
-          cd examples/vue-app
+          cd examples/react-app
           npm run install:local
           npm run build
 
@@ -65,7 +65,7 @@ jobs:
         env:
           SOURCE_DIR: "./examples/vue-app/dist"
           AWS_REGION: "us-east-1"
-          AWS_S3_BUCKET: "demo-solana.tor.us"
+          AWS_S3_BUCKET: "demo-siws.web3auth.io"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
