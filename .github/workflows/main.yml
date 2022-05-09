@@ -43,9 +43,6 @@ jobs:
       - name: Pack and build example
         if: github.ref == 'refs/heads/main'
         run: |
-          npm pack
-          cd examples/react-app
-          npm run install:local
           npm run build
 
       # Set the credentials from repository settings/secrets
