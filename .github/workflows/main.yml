@@ -34,16 +34,9 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-node-
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Build
-        run: npm run build
-
-      - name: Pack and build example
+      - name: Install dependencies and run
         if: github.ref == 'refs/heads/main'
-        run: |
-          npm run build
+        run: cd examples/react-app && npm install && npm run build
 
       # Set the credentials from repository settings/secrets
       - name: Configure AWS credentials
@@ -60,7 +53,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: jakejarvis/s3-sync-action@master
         env:
-          SOURCE_DIR: "./examples/vue-app/dist"
+          SOURCE_DIR: "./examples/react-app/dist"
           AWS_REGION: "us-east-1"
           AWS_S3_BUCKET: "demo-siws.web3auth.io"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
