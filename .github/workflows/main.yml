@@ -15,28 +15,9 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
-      - name: Set up node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-
-      - name: Node dependency cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ matrix.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ matrix.os }}-node-
-
-      - name: Install dependencies and run
-        if: github.ref == 'refs/heads/master'
-        run: cd examples/react-app && npm install && npm run build
+      # - name: Install dependencies and run
+      #   if: github.ref == 'refs/heads/master'
+      #   run: cd examples/react-app && npm install && npm run build
 
       # Set the credentials from repository settings/secrets
       - name: Configure AWS credentials
