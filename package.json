@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/torusresearch/sign-in-with-solana.git"
+    "url": "git+https://github.com/web3auth/sign-in-with-solana.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/torusresearch/sign-in-with-solana/issues"
+    "url": "https://github.com/web3auth/sign-in-with-solana/issues"
   },
-  "homepage": "https://github.com/torusresearch/sign-in-with-solana#readme",
+  "homepage": "https://github.com/web3auth/sign-in-with-solana#readme",
   "dependencies": {
     "@stablelib/random": "^1.0.1",
     "bs58": "^5.0.0",
