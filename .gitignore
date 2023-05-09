@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-/dist
 *.tgz
 
 embed.min.js
@@ -27,4 +26,4 @@ secrets.json
 toruslabs-solana-embed*
 
 .parcel-cache
-react-app/dist
+dist/

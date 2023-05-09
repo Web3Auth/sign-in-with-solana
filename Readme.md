@@ -1,27 +1,27 @@
-
 # Sign In With Solana
 
-The primary purpose of this document is to define how Solana accounts authenticate with off-chain services. By signing a standard message format parameterized by scope, session details, and a nonce. 
+The primary purpose of this document is to define how Solana accounts authenticate with off-chain services. By signing a standard message format parameterized by scope, session details, and a nonce.
 
 While decentralized identity is not a novel concept, the most common implementations of blockchain-based credentials are either certificate-based or rely on centralized providers. We're proposing an alternative that doesn't require a trusted third party.
 
-### Assumptions 
+### Assumptions
 
-Currently, there is no propsed standard for signing messages on Solana. We are proposing `SIP-99` as a placeholder to conform to CAIP-74. 
+Currently, there is no propsed standard for signing messages on Solana. We are proposing `SIP-99` as a placeholder to conform to CAIP-74.
 
 ### Specification
+
 The specification for Sign In With Solana is based on https://eips.ethereum.org/EIPS/eip-4361 with the intention to make it compatible with https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-74.md
 
-The message created follows the following structure :- 
+The message created follows the following structure :-
 
 #### CACAO
 
 ```ts
-  header: Headers;
+header: Headers;
 
-  payload: Payload;
+payload: Payload;
 
-  signature: Signature;
+signature: Signature;
 ```
 
 #### Payload
@@ -82,8 +82,7 @@ The message created follows the following structure :-
   s: string; // signature
 ```
 
-
-A sample sign in message would look like :- 
+A sample sign in message would look like :-
 
 ```
 localhost:8080 wants you to sign in with your Solana account:
@@ -100,10 +99,9 @@ Issued At: 2022-04-25T14:51:12.040Z
 
 ![Screenshot here](SIWS.png)
 
-
 ### Workflow
 
-1. The user connects the wallet to the website. 
+1. The user connects the wallet to the website.
 2. From the frontend pass the domain, address, statement, uri, version, nonce, issuedAt, expirationTime, notBefore, requestId, resources (Array) to the SignInWithSolanaMessage constructor. There is additional regex validation in place as mentioned in the below sections
 3. Nonce is needed as a security mechanism from replay attacks and hence it is generated at the server side.
 4. The created message needs to be prepared in a wallet friendly format for which <message>.prepareMessage() needs to be called
@@ -111,7 +109,9 @@ Issued At: 2022-04-25T14:51:12.040Z
 6. This function would return the signedMessage
 
 #### Regex rules
+
 Each field specified in the Specification section needs to follow the following regex rules
+
 ```js
 DOMAIN = "(?<domain>([^?#]*)) wants you to sign in with your Solana account:";
 ADDRESS = "\\n(?<address>[a-zA-Z0-9]{32,44})\\n\\n";
@@ -132,6 +132,7 @@ RESOURCES = `(\\nResources:(?<resources>(\\n- ${URI}?)+))?`;
 ### Verification flow
 
 The verify function takes in the following params (as VerifyParams)
+
 ```
 signature
 publicKey
@@ -139,20 +140,22 @@ domain
 nonce
 time (optional)
 ```
+
 There are certain checks in place such as invalid domain check,nonce binding check, expiry checks etc
+
 ```js
-import nacl from "tweetnacl";
+import nacl from "@toruslabs/tweetnacl-js";
 .
 .
 nacl.sign.detached.verify(encodedMessage, base58.decode(signature), base58.decode(publicKey))
 ```
-If this function returns a true value then it is a valid signature
 
+If this function returns a true value then it is a valid signature
 
 ### User flow
 
 ![Userflow](userflow.png)
 
-#### Disclaimer : 
-We haven't undergone a Formal Security Audit yet.
+#### Disclaimer :
 
+We haven't undergone a Formal Security Audit yet.

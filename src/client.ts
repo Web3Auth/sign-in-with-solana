@@ -1,10 +1,22 @@
-import { randomStringForEntropy } from "@stablelib/random";
+import nacl from "@toruslabs/tweetnacl-js";
 import base58 from "bs58";
-import nacl from "tweetnacl";
-import * as uri from "valid-url";
+import nodeCrypto from "crypto";
+import { isUri } from "valid-url";
 
 import { ParsedMessage } from "./regex";
 import { ErrorTypes, Header, Payload, Signature, SignInWithSolanaError, SignInWithSolanaResponse, VerifyParams } from "./types";
+
+const browserCrypto = global.crypto || global.msCrypto || {};
+
+function randomBytes(size: number): Buffer {
+  const arr = new Uint8Array(size);
+  if (typeof browserCrypto.getRandomValues === "undefined") {
+    return Buffer.from(nodeCrypto.randomBytes(size));
+  }
+  browserCrypto.getRandomValues(arr);
+
+  return Buffer.from(arr);
+}
 
 export class SIWS {
   header: Header;
@@ -17,7 +29,7 @@ export class SIWS {
    * Creates a parsed Sign-In with Solana Message object from a
    * string or an object. If a string is used an parser is called to
    * validate the parameter, otherwise the fields are attributed.
-   * @param param {string | SIWS} Sign message as a string or an object.
+   * @param param - {string | SIWS} Sign message as a string or an object.
    */
   constructor(param: string | Partial<SIWS>) {
     if (typeof param === "string") {
@@ -42,7 +54,7 @@ export class SIWS {
         this.payload.chainId = parseInt(this.payload.chainId);
       }
       if (!this.payload.nonce) {
-        this.payload.nonce = randomStringForEntropy(96);
+        this.payload.nonce = randomBytes(8).toString("hex");
       }
     }
   }
@@ -64,7 +76,7 @@ export class SIWS {
     const uriField = `URI: ${this.payload.uri}`;
     let prefix = [header, this.payload.address].join("\n");
     const versionField = `Version: ${this.payload.version}`;
-    const chainField = `Chain ID: ${this.payload.chainId}` || "1";
+    const chainField = `Chain ID: ${this.payload.chainId || "1"}`;
     const nonceField = `Nonce: ${this.payload.nonce}`;
     const suffixArray = [uriField, versionField, chainField, nonceField];
     if (this.payload.issuedAt) {
@@ -131,7 +143,7 @@ export class SIWS {
     }
 
     /** Check if the URI is valid. */
-    if (!uri.isUri(this.payload.uri)) {
+    if (!isUri(this.payload.uri)) {
       throw new SignInWithSolanaError(ErrorTypes.INVALID_URI, `${this.payload.uri} to be a valid uri.`);
     }
 
