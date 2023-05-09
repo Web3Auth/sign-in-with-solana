@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+  SIWS test
+</head>
+<body>
+  <script src="../dist/signInWithSolana.umd.min.js"></script>
+  <script>
+    (async () => {
+      const param = {
+        header: {
+          t: "sip99",
+        },
+        payload: {
+          domain: "login.xyz",
+          address: "HdNrHhbvY1FM79T7tSDAu9D7sy5gNEqJvqGe7BrBkio9",
+          statement: "Sign-In With Solana Example Statement",
+          uri: "https://login.xyz",
+          version: "1",
+          nonce: "bTyXgcQxn2htgkjJn",
+          issuedAt: "2022-01-27T17:09:38.578Z",
+          chainId: 1,
+        },
+        signature: {
+          s: "22ACJ9Y3ypH8vo3zV5vy7dp9S3oZWAXzbxsohHL9bw24M6XjKo1Ti5ZkgKmP2R3Jq5Wks4R1Eq41dB6SXF8NMC6G",
+          t: "sip99",
+        },
+      };
+      const siws = new SignInWithSolana.SIWS(param);
+      const resp = await siws.verify({ payload: param.payload, signature: param.signature });
+      console.log(resp);
+      console.assert(resp.success, "SIWS verification failed");
+    })();
+  </script>
+</body>
