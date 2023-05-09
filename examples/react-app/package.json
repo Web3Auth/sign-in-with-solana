@@ -33,6 +33,7 @@
     "@solana/wallet-adapter-react-ui": "^0.9.5",
     "@solana/wallet-adapter-wallets": "^0.16.0",
     "@solana/web3.js": "^1.36.0",
+    "@web3auth/sign-in-with-solana": "file:../../",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "sweetalert2": "^11.4.12"

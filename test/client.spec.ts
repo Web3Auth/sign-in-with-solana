@@ -1,10 +1,10 @@
 /* eslint-disable mocha/max-top-level-suites */
 /* eslint-disable mocha/no-setup-in-describe */
+import nacl from "@toruslabs/tweetnacl-js";
 import assert from "assert";
 import base58 from "bs58";
-import nacl from "tweetnacl";
 
-import { Signature, SIWS } from "../src/index";
+import { ErrorTypes, Signature, SIWS } from "../src/index";
 import parsingPositive from "./parsing_positive.json";
 import validationNegative from "./validation_negative.json";
 import validationPositive from "./validation_positive.json";
@@ -34,34 +34,41 @@ describe(`Message Validation`, function () {
       const { payload } = value;
       const { signature } = value;
       const msg = new SIWS({ payload });
-      await assert.doesNotReject(msg.verify({ payload, signature }));
+      const resp = await msg.verify({ payload, signature });
+      assert(resp.success);
     });
   });
 
-  test.concurrent.each(Object.entries(validationNegative))("Fails to verify message: %s", async (_n, testFields) => {
-    try {
-      const { payload } = testFields;
-      const { signature } = testFields;
+  Object.entries(validationNegative).forEach(([test, value]) => {
+    it(`Fails to verify message: ${test}`, async function () {
+      const { payload, signature } = value;
       const msg = new SIWS({ payload });
-      await msg.verify({ payload, signature });
-    } catch (error) {
-      expect(Object.values(SIWS).includes(error));
-    }
+      try {
+        const error = await msg.verify({ payload, signature });
+        assert(Object.values(ErrorTypes).includes(error.error.type));
+      } catch (error) {
+        // this is for time error
+        assert(Object.values(ErrorTypes).includes(error.message));
+      }
+    });
   });
 });
 
 describe(`Round Trip`, function () {
   const rbytes = nacl.randomBytes(32);
   const keypair = nacl.sign.keyPair.fromSeed(rbytes);
-  test.concurrent.each(Object.entries(parsingPositive))("Generates a Successfully Verifying message: %s", async (_, el) => {
-    const { payload } = el.fields;
-    payload.address = base58.encode(keypair.publicKey);
-    const msg = new SIWS({ payload });
-    const encodedMessage = new TextEncoder().encode(msg.prepareMessage());
-    const signatureEncoded = base58.encode(nacl.sign.detached(encodedMessage, keypair.secretKey));
-    const signature = new Signature();
-    signature.s = signatureEncoded;
-    signature.t = "sip99";
-    await expect(msg.verify({ signature, payload }).then(({ success }) => success)).resolves.toBeTruthy();
+  Object.entries(parsingPositive).forEach(([test, value]) => {
+    it(`Generates a Successfully Verifying message: ${test}`, async function () {
+      const { payload } = value.fields;
+      payload.address = base58.encode(keypair.publicKey);
+      const msg = new SIWS({ payload });
+      const encodedMessage = new TextEncoder().encode(msg.prepareMessage());
+      const signatureEncoded = base58.encode(nacl.sign.detached(encodedMessage, keypair.secretKey));
+      const signature = new Signature();
+      signature.s = signatureEncoded;
+      signature.t = "sip99";
+      const { success } = await msg.verify({ signature, payload });
+      assert.equal(success, true);
+    });
   });
 });

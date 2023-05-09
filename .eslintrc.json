@@ -1,7 +1,6 @@
 {
   "root": true,
   "extends": ["@toruslabs/eslint-config-typescript"],
-  "plugins": ["jest"],
   "parser": "@typescript-eslint/parser",
   "ignorePatterns": "*.config.js",
   "env": {
