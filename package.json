@@ -9,7 +9,8 @@
   "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "torus-scripts build",
-    "lint:ts": "eslint --fix 'src/**/*.ts'",
+    "release": "torus-scripts release",
+    "lint": "eslint --fix 'src/**/*.ts'",
     "test": "mocha"
   },
   "repository": {
