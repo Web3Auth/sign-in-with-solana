@@ -6,7 +6,8 @@ import { isUri } from "valid-url";
 import { ParsedMessage } from "./regex";
 import { ErrorTypes, Header, Payload, Signature, SignInWithSolanaError, SignInWithSolanaResponse, VerifyParams } from "./types";
 
-const browserCrypto = global.crypto || global.msCrypto || {};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const browserCrypto = global.crypto || (global as any).msCrypto || {};
 
 function randomBytes(size: number): Buffer {
   const arr = new Uint8Array(size);
@@ -29,7 +30,7 @@ export class SIWS {
    * Creates a parsed Sign-In with Solana Message object from a
    * string or an object. If a string is used an parser is called to
    * validate the parameter, otherwise the fields are attributed.
-   * @param param - {string | SIWS} Sign message as a string or an object.
+   * @param param - Sign message as a string or an object.
    */
   constructor(param: string | Partial<SIWS>) {
     if (typeof param === "string") {
@@ -65,7 +66,7 @@ export class SIWS {
    * [prepareMessage()] instead which will resolve to the correct method based
    * on the [type] attribute of this object, in case of other formats being
    * implemented.
-   * @returns {string} message
+   * @returns - message
    */
   toMessage(): string {
     /** Validates all fields of the object */
@@ -113,7 +114,7 @@ export class SIWS {
   /**
    * This method parses all the fields in the object and creates a sign
    * message according with the type defined.
-   * @returns {string} Returns a message ready to be signed according with the
+   * @returns Returns a message ready to be signed according with the
    * type defined in the object.
    */
   prepareMessage(): string {
@@ -134,7 +135,7 @@ export class SIWS {
 
   /**
    * Validates the value of this object fields.
-   * @throws Throws an {ErrorType} if a field is invalid.
+   * @throws Throws an ErrorType if a field is invalid.
    */
   validate() {
     /** `domain` check. */
@@ -184,8 +185,8 @@ export class SIWS {
 
   /**
    * Validates the integrity of the object by matching it's signature.
-   * @param params Parameters to verify the integrity of the message, signature is required.
-   * @returns {Promise<SignInWithSolanaResponse>} This object if valid.
+   * @param params - Parameters to verify the integrity of the message, signature is required.
+   * @returns This object if valid.
    */
   async verify(params: VerifyParams): Promise<SignInWithSolanaResponse> {
     return new Promise<SignInWithSolanaResponse>((resolve) => {
