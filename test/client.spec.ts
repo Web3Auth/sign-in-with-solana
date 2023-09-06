@@ -48,7 +48,7 @@ describe(`Message Validation`, function () {
         assert(Object.values(ErrorTypes).includes(error.error.type));
       } catch (error) {
         // this is for time error
-        assert(Object.values(ErrorTypes).includes(error.message));
+        assert((Object.values(ErrorTypes) as string[]).includes((error as Error).message));
       }
     });
   });
