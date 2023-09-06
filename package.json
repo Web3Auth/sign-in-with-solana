@@ -1,6 +1,6 @@
 {
   "name": "@web3auth/sign-in-with-solana",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "",
   "main": "dist/signInWithSolana.cjs.js",
   "module": "dist/signInWithSolana.esm.js",
