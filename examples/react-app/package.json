@@ -18,6 +18,9 @@
     "package.json",
     "tsconfig.json"
   ],
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "clean": "shx rm -rf dist .parcel-cache",
     "build": "parcel build src/index.html",
