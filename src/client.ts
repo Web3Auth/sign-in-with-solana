@@ -1,19 +1,15 @@
 import nacl from "@toruslabs/tweetnacl-js";
 import base58 from "bs58";
-import nodeCrypto from "crypto";
 import { isUri } from "valid-url";
 
 import { ParsedMessage } from "./regex";
 import { ErrorTypes, Header, Payload, Signature, SignInWithSolanaError, SignInWithSolanaResponse, VerifyParams } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const browserCrypto = global.crypto || (global as any).msCrypto || {};
+const browserCrypto = globalThis.crypto || (globalThis as any).msCrypto || {};
 
 function randomBytes(size: number): Buffer {
   const arr = new Uint8Array(size);
-  if (typeof browserCrypto.getRandomValues === "undefined") {
-    return Buffer.from(nodeCrypto.randomBytes(size));
-  }
   browserCrypto.getRandomValues(arr);
 
   return Buffer.from(arr);
