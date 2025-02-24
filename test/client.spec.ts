@@ -1,5 +1,3 @@
-/* eslint-disable mocha/max-top-level-suites */
-/* eslint-disable mocha/no-setup-in-describe */
 import nacl from "@toruslabs/tweetnacl-js";
 import assert from "assert";
 import base58 from "bs58";
