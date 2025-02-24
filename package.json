@@ -27,25 +27,25 @@
   "homepage": "https://github.com/web3auth/sign-in-with-solana#readme",
   "dependencies": {
     "@toruslabs/tweetnacl-js": "^1.0.4",
-    "bs58": "^5.0.0",
+    "bs58": "^6.0.0",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "@babel/register": "^7.24.6",
-    "@toruslabs/config": "^2.2.0",
-    "@toruslabs/eslint-config-typescript": "^3.3.3",
-    "@toruslabs/torus-scripts": "^6.1.1",
-    "@types/mocha": "^10.0.7",
-    "@types/node": "^20",
+    "@babel/register": "^7.25.9",
+    "@toruslabs/config": "^3.0.1",
+    "@toruslabs/eslint-config-typescript": "^4.0.4",
+    "@toruslabs/torus-scripts": "^7.0.5",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22",
     "@types/valid-url": "^1.0.7",
     "cross-env": "^7.0.3",
-    "eslint": "^8.48.0",
-    "loglevel": "^1.9.1",
-    "mocha": "^10.7.3",
-    "prettier": "^3.3.3",
+    "eslint": "^9.21.0",
+    "loglevel": "^1.9.2",
+    "mocha": "^11.1.0",
+    "prettier": "^3.5.2",
     "rimraf": "^6.0.1",
-    "tsx": "^4.17.0",
-    "typescript": "^5.5.4"
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
   },
   "files": [
     "dist"
