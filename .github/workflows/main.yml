@@ -6,7 +6,7 @@ jobs:
   test:
     strategy:
       matrix:
-        node: ["18.x"]
+        node: ["22.x"]
         os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
@@ -26,9 +26,12 @@ jobs:
 
       - name: Run Build
         run: npm run build
+      
+      - name: Install playwright webkit
+        run: npx playwright install-deps webkit
 
-      - name: Run tests
-        run: npm run test
+      - name: Test
+        run: npx playwright install && npm run test
 
       - name: Install dependencies and run
         if: github.ref == 'refs/heads/master'
