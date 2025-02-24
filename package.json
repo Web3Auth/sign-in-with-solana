@@ -12,7 +12,7 @@
     "build": "torus-scripts build",
     "release": "torus-scripts release",
     "lint": "eslint --fix 'src/**/*.ts'",
-    "test": "mocha"
+    "test": "vitest run --config test/configs/browsers.config.mts --coverage"
   },
   "repository": {
     "type": "git",
@@ -35,23 +35,28 @@
     "@toruslabs/config": "^3.0.1",
     "@toruslabs/eslint-config-typescript": "^4.0.4",
     "@toruslabs/torus-scripts": "^7.0.5",
-    "@types/mocha": "^10.0.10",
     "@types/node": "^22",
     "@types/valid-url": "^1.0.7",
+    "@vitest/browser": "^3.0.6",
+    "@vitest/coverage-istanbul": "^3.0.6",
     "cross-env": "^7.0.3",
     "eslint": "^9.21.0",
     "loglevel": "^1.9.2",
-    "mocha": "^11.1.0",
+    "playwright": "^1.50.1",
     "prettier": "^3.5.2",
     "rimraf": "^6.0.1",
     "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.6"
   },
   "files": [
     "dist"
   ],
+  "overrides": {
+    "esbuild": "^0.25.0"
+  },
   "engines": {
-    "node": ">=18.x",
+    "node": ">=20.x",
     "npm": ">=9.x"
   }
 }
