@@ -6,7 +6,7 @@
   "module": "dist/lib.esm/index.js",
   "unpkg": "dist/signInWithSolana.umd.min.js",
   "jsdelivr": "dist/signInWithSolana.umd.min.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/lib.cjs/types/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "build": "torus-scripts build",
