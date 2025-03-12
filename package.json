@@ -32,22 +32,22 @@
   },
   "devDependencies": {
     "@babel/register": "^7.25.9",
-    "@toruslabs/config": "^3.0.1",
-    "@toruslabs/eslint-config-typescript": "^4.0.4",
-    "@toruslabs/torus-scripts": "^7.0.5",
+    "@toruslabs/config": "^3.1.0",
+    "@toruslabs/eslint-config-typescript": "^4.1.0",
+    "@toruslabs/torus-scripts": "^7.1.2",
     "@types/node": "^22",
     "@types/valid-url": "^1.0.7",
-    "@vitest/browser": "^3.0.6",
-    "@vitest/coverage-istanbul": "^3.0.6",
+    "@vitest/browser": "^3.0.8",
+    "@vitest/coverage-istanbul": "^3.0.8",
     "cross-env": "^7.0.3",
-    "eslint": "^9.21.0",
+    "eslint": "^9.22.0",
     "loglevel": "^1.9.2",
-    "playwright": "^1.50.1",
-    "prettier": "^3.5.2",
+    "playwright": "^1.51.0",
+    "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
     "tsx": "^4.19.3",
-    "typescript": "^5.7.3",
-    "vitest": "^3.0.6"
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
   },
   "files": [
     "dist"
