@@ -60,6 +60,7 @@ jobs:
 
       # Invalidate Cloudfront
       - name: invalidate
+        if: github.ref == 'refs/heads/master'
         uses: chaitanyapotti/cloudfront-update-distribution@v4
         with:
           cloudfront-distribution-id: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
