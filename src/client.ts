@@ -1,5 +1,5 @@
-import nacl from "@toruslabs/tweetnacl-js";
-import base58 from "bs58";
+import { bs58 as base58 } from "@toruslabs/bs58";
+import { sign } from "@toruslabs/tweetnacl-js";
 import { isUri } from "valid-url";
 
 import { ParsedMessage } from "./regex";
@@ -247,7 +247,7 @@ export class SIWS {
 
       // Verification
       const encodedMessage = new TextEncoder().encode(message);
-      const data = nacl.sign.detached.verify(encodedMessage, base58.decode(signature.s), base58.decode(payload.address));
+      const data = sign.detached.verify(encodedMessage, base58.decode(signature.s), base58.decode(payload.address));
 
       if (!data)
         resolve({
