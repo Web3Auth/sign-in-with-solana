@@ -1,5 +1,5 @@
-import nacl from "@toruslabs/tweetnacl-js";
-import base58 from "bs58";
+import { bs58 as base58 } from "@toruslabs/bs58";
+import { randomBytes, sign } from "@toruslabs/tweetnacl-js";
 import { describe, expect, it } from "vitest";
 
 import { ErrorTypes, Signature, SIWS } from "../src/index";
@@ -53,8 +53,8 @@ describe(`Message Validation`, () => {
 });
 
 describe(`Round Trip`, () => {
-  const rbytes = nacl.randomBytes(32);
-  const keypair = nacl.sign.keyPair.fromSeed(rbytes);
+  const rbytes = randomBytes(32);
+  const keypair = sign.keyPair.fromSeed(rbytes);
 
   Object.entries(parsingPositive).forEach(([test, value]) => {
     it(`Generates a Successfully Verifying message: ${test}`, async () => {
@@ -62,7 +62,7 @@ describe(`Round Trip`, () => {
       payload.address = base58.encode(keypair.publicKey);
       const msg = new SIWS({ payload });
       const encodedMessage = new TextEncoder().encode(msg.prepareMessage());
-      const signatureEncoded = base58.encode(nacl.sign.detached(encodedMessage, keypair.secretKey));
+      const signatureEncoded = base58.encode(sign.detached(encodedMessage, keypair.secretKey));
       const signature = new Signature();
       signature.s = signatureEncoded;
       signature.t = "sip99";
