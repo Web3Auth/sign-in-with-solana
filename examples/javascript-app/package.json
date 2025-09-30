@@ -18,7 +18,7 @@
     "@solana/wallet-adapter-base": "^0.9.5",
     "@solana/wallet-adapter-react": "^0.15.4",
     "@solana/wallet-adapter-react-ui": "^0.9.6",
-    "@solana/wallet-adapter-wallets": "^0.16.0",
+    "@solana/wallet-adapter-wallets": "^0.19.37",
     "@solana/web3.js": "^1.39.1",
     "@types/varint": "^6.0.0",
     "@web3auth/sign-in-with-solana": "file:../../web3auth-sign-in-with-solana-0.0.1.tgz",
